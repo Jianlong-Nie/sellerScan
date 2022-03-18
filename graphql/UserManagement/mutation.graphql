@@ -1,0 +1,35 @@
+mutation ChangePassword($oldPassword: String!, $newPassword: String!, $userId: ID!) {
+  changePassword(userId: $userId, oldPassword: $oldPassword, newPassword: $newPassword)
+}
+mutation UpdateSellerProfile($request: SellerProfileRequest!) {
+  updateSellerProfile(request: $request) {
+    ...SellerProfileFragment
+  }
+}
+mutation ForgotPasswordStep1SendNotificationEmail($email: String!) {
+  forgotPasswordStep1SendNotificationEmail(email: $email) {
+    email
+    phoneNumber
+    message
+  }
+}
+mutation ForgotPasswordStep2VerifyTokenEmail($email: String!, $tokenCode: String) {
+  forgotPasswordStep2VerifyTokenEmail(email: $email, tokenCode: $tokenCode) {
+    message
+    actionToken
+  }
+}
+mutation ForgotPasswordStep3ChangeByEmail(
+  $actionTokenValue: String!
+  $newPassword: String!
+  $confirmPassword: String!
+) {
+  forgotPasswordStep3ChangeByEmail(
+    actionTokenValue: $actionTokenValue
+    newPassword: $newPassword
+    confirmPassword: $confirmPassword
+  ) {
+    message
+  }
+}
+# updateSellerProfile(request: SellerProfileRequest!): SellerProfileResponse

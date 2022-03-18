@@ -1,0 +1,83 @@
+#mutations & queries of list functionality
+
+fragment SellerListingViewFragment on SellerListingView {
+  productId
+  shortName
+  mainPhotoUrl
+  listingId
+  startDate
+  openUntil
+  totalItemsAvailable
+  totalItemsSold
+  storeName
+  daysLeft
+  wholeSalePrice
+  retailPrice
+  categories
+  minSoldQuantity
+  listingStatus
+}
+
+fragment SellerListingGroupFragment on SellerListingGroupView {
+  active
+  ended
+  productId
+  shortName
+  total
+}
+
+query GetPolicyNames {
+  getPolicyNames {
+    name
+    values
+  }
+}
+
+query GetSellerListing($productId: String, $sellerFilterOptions: SellerFilterOptions!) {
+  getSellerListing(productId: $productId, options: $sellerFilterOptions) {
+    content {
+      ...SellerListingViewFragment
+    }
+    pageNo
+    pageSize
+    totalPages
+    totalElements
+  }
+}
+
+query getSellerListingGroupByProduct($sellerFilterOptions: SellerFilterOptions!) {
+  getSellerListingGroupByProduct(options: $sellerFilterOptions) {
+    content {
+      ...SellerListingGroupFragment
+    }
+    pageNo
+    pageSize
+    totalPages
+    totalElements
+  }
+}
+
+mutation CreateProductListings($input: ProductListingsInput!) {
+  createProductListings(input: $input) {
+    id
+    startDate
+    announcement {
+      referenceId
+    }
+  }
+}
+
+query GetMicroHubInformation {
+  getMicroHubInformation {
+    microHubId
+    contactNumber
+    contactPerson
+    address {
+      streetAddress1
+      streetAddress2
+      provinceState
+      areaCode
+      country
+    }
+  }
+}

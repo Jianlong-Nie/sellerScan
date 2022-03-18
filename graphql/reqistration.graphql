@@ -1,0 +1,73 @@
+mutation createRegistration($request: SellerProfileRequestForCreate!) {
+  registerSeller(request: $request) {
+    userId
+    sellerId
+    userName
+    firstName
+    lastName
+    email
+    phoneNumber
+    userType
+    createdAt
+    updatedAt
+    businessName
+    geoLocation
+    brandName
+    biography
+    govCompanyId
+    vstGstNumber
+    usersRating
+    sellerType
+    selectedCountry {
+      id
+      countryName
+    }
+    selectedSupportedLanguage {
+      id
+      language
+    }
+    escrowAccountId
+    avatarUrl
+    shortName
+    vatCode
+    sellerBillingDetails {
+      billingDetailsId
+      sellerId
+      accountName
+      bankName
+      bankAddress
+      internationalRoutingCode
+      domesticRoutingCode
+      ifscCode
+      accountNumber
+      createdAt
+      updatedAt
+    }
+    sellerContacts {
+      contactId
+      sellerId
+      contactName
+      contactEmail
+      contactPhoneNumber
+      supportEmail
+      supportPhoneNumber
+      createdAt
+      updatedAt
+    }
+    sellerName
+    nationalIdNumber
+    nationalIdNumberValidated
+    taxNumber
+    taxNumberValidated
+    vatCodeValidated
+    commChamberRegNum
+    commChamberRegNumValidated
+  }
+}
+
+mutation validateCode($request: ValidateCodeRequest!) {
+  validateCode(request: $request) {
+    status
+    extraMessage
+  }
+}

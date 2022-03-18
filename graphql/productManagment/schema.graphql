@@ -1,0 +1,56 @@
+fragment StoreFragment on Store {
+  id
+  name
+  description
+  city
+  onlineStoreType
+  area
+  #location
+  #  todo fixed actual required fields
+}
+
+mutation CreateStore($storeCreateInput: StoreCreateInput!) {
+  createStore(storeInput: $storeCreateInput) {
+    ...StoreFragment
+  }
+}
+#
+mutation UpdateStore($storeId: String!, $storeInput: StoreInput!) {
+  updateStore(storeId: $storeId, storeInput: $storeInput) {
+    ...StoreFragment
+  }
+}
+mutation DeleteStoreById($storeId: String!) {
+  deleteStoreById(storeId: $storeId)
+}
+
+query GetStores($pageable: StorePageable!) {
+  getStores(pageable: $pageable) {
+    pageNo
+    pageSize
+    totalPages
+    totalElements
+    content {
+      ...StoreFragment
+    }
+  }
+}
+
+query GetStoresByCityOrProvince($place: String!, $pageable: StorePageable!) {
+  getStoresByCityOrProvince(place: $place, pageable: $pageable) {
+    pageNo
+    pageSize
+    totalPages
+    totalElements
+    content {
+      ...StoreFragment
+    }
+  }
+}
+
+mutation updateListingStatus($input: ListingStatusInput!) {
+  updateListingStatus(input: $input) {
+    id
+    productListingStatus
+  }
+}

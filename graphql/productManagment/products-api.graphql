@@ -1,0 +1,38 @@
+query GetProducts($pageable: ProductPageable) {
+  getProducts(pageable: $pageable) {
+    content {
+      productId
+      shortName
+      longName
+      productType
+      categoryList
+      description
+      itemsInStock
+      sellerSku
+      brand
+      vendorName
+      price {
+        priceId
+        retailPrice
+        wholeSalePrice
+      }
+      variants {
+        variantId
+        itemsInStock
+        options {
+          key
+          value
+        }
+        retailPrice
+        wholeSalePrice
+        defaultVariant
+        priceId
+      }
+    }
+    pageNo
+    pageSize
+    totalElements
+    totalPages
+  }
+}
+
